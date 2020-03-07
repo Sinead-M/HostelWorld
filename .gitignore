@@ -1,0 +1,9 @@
+.idea/
+target/
+out/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+.allure
+allure-*
