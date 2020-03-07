@@ -7,7 +7,7 @@ I added some sample txt files in src/main/resources that I was running the tests
  
 #### Exercise Two Comments - 
 
-Browser redirected tests to "https://hostelworld.com/pwa/" in consistently which had different element ID's to "https://hostelworld.com". Added if statements to test both flows
+Browser redirected tests to "https://hostelworld.com/pwa/" randomly which had different element ID's to "https://hostelworld.com". Added if statements to test both flows but was difficult to predict which URL it would direct to.
 
 #### Exercise Three Comments - 
 
