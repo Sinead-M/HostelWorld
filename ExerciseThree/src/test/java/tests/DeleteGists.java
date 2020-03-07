@@ -18,7 +18,7 @@ public class DeleteGists {
 
     RequestSpecification httpRequest = RestAssured.given();
 
-    httpRequest.header("Authorization", "token  " + System.getProperty("accessToken"));
+    httpRequest.header("Authorization", "token " + System.getProperty("accessToken"));
 
     Response response = httpRequest.request(Method.DELETE);
 

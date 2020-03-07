@@ -19,7 +19,7 @@ public class CreateGists {
 
     RequestSpecification httpRequest = RestAssured.given();
 
-    httpRequest.header("Authorization", "token 77f3740bea96d63034f3fd2274826f90d5160607");
+    httpRequest.header("Authorization", "token " + System.getProperty("accessToken"));
 
     String json = createJson();
 
