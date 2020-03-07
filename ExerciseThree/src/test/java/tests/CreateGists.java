@@ -1,44 +1,48 @@
 package tests;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.response.Response;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import org.testng.annotations.Test;
 import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
-import org.apache.commons.io.IOUtils;
 
 public class CreateGists {
 
   @Test
-  public void createGist() throws IOException {
+  public void createGist() {
 
     RestAssured.baseURI = "https://api.github.com/gists";
 
     RequestSpecification httpRequest = RestAssured.given();
 
-    httpRequest.header("Authorization", "token 23173fa641f733b1bb6d756d670307edc168429f");
+    httpRequest.header("Authorization", "token 77f3740bea96d63034f3fd2274826f90d5160607");
 
-    Map json = retrieveJsonReqest();
+    String json = createJson();
 
     httpRequest.body(json);
 
     Response response = httpRequest.request(Method.POST);
 
-    String responseBody = response.getBody().asString();
+    String responseHeader = response.getStatusLine();
 
-    System.out.println("Response Body is -> " + responseBody);
+    assertThat(responseHeader.contains("201"), is(true));
   }
 
-  private Map<String, Object> retrieveJsonReqest() throws IOException {
-    Map<String, Object> jsonAsMap = new HashMap<>();
-    jsonAsMap.put("description", "Hello World");
-    jsonAsMap.put("public", "false");
-    return jsonAsMap;
+  private String createJson() {
+    JSONObject fileContent = new JSONObject();
+    JSONObject fileName = new JSONObject();
+    JSONObject request = new JSONObject();
+
+    fileContent.put("content", "class HelloWorld\\n   def initialize(name)\\n      @name = name.capitalize\\n   "
+        + "end\\n   def sayHi\\n      puts \\\"Hello !\\\"\\n   end\\nend\\n\\nhello = HelloWorld.new(\\\"World\\\")\\nhello.sayHi");
+    fileName.put("hello_world.rb", fileContent);
+    request.put("description", "Sinead Test");
+    request.put("public", false);
+    request.put("files", fileName);
+    return request.toString();
   }
 }

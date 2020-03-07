@@ -18,11 +18,10 @@ public class GetGists {
 
     RequestSpecification httpRequest = RestAssured.given();
 
-    httpRequest.header("Authorization", "token 23173fa641f733b1bb6d756d670307edc168429f");
+    httpRequest.header("Authorization", "token " + System.getProperty("accessToken"));
 
     Response response = httpRequest.request(Method.GET);
 
-    String responseBody = response.getBody().asString();
     String responseHeader = response.getStatusLine();
 
     assertThat(responseHeader.contains("200"), is(true));

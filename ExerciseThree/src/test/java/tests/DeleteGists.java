@@ -14,11 +14,11 @@ public class DeleteGists {
   @Test
   public void DeleteGist() {
 
-    RestAssured.baseURI = "https://api.github.com/gists/f797bbb0930cc542b7ce524503aea903";
+    RestAssured.baseURI = "https://api.github.com/gists/" + System.getProperty("gistID");
 
     RequestSpecification httpRequest = RestAssured.given();
 
-    httpRequest.header("Authorization", "token 23173fa641f733b1bb6d756d670307edc168429f");
+    httpRequest.header("Authorization", "token  " + System.getProperty("accessToken"));
 
     Response response = httpRequest.request(Method.DELETE);
 
