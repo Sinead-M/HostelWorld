@@ -3,9 +3,7 @@
 #### Exercise One Comments - 
 
 To run test cd into ExerciseOne module and run "mvn test -Dtxt.Name={txt file name}"
-I added some sample txt files in src/main/resources that I was tests against (tests are hard coded to retrieve txt files
- from this
- directory)
+I added some sample txt files in src/main/resources that I was running the tests against (tests are hard coded to retrieve txt files from this directory)
  
 #### Exercise Two Comments - 
 
