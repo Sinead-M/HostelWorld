@@ -12,24 +12,16 @@ import static org.hamcrest.Matchers.is;
 
 public class ResultsPage {
 
-  private WebDriver driver;
-
-  private WebDriverWait defaultWebDriverWait;
-
   @FindBy(xpath = "//*[@id=\"top-search\"]/div/div[1]/div")
   private WebElement lblSearchBox;
 
   public ResultsPage(WebDriver driver) {
     PageFactory.initElements(driver, this);
-    this.driver = driver;
   }
 
   public void verifyProperties() {
-    defaultWebDriverWait.until(ExpectedConditions.visibilityOf(lblSearchBox));
     String text = lblSearchBox.getAttribute("value");
     assertThat(text.contains("Madrid"), is(true));
-    String searchUrl = driver.getCurrentUrl();
-    assertThat(searchUrl.contains("Madrid"), is(true));
   }
 
 }

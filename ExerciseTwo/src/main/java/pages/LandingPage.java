@@ -14,13 +14,19 @@ public class LandingPage {
   private WebElement lblSearchBox;
 
   @FindBy(id = "location-text-input-field")
-  private WebElement lblSearchBoxPWA;
+  private WebElement lblSearchBoxPwa;
 
   @FindBy(xpath = "//*[@id=\"top-search\"]/div[1]/div/div[2]/ul/li[2]")
   private WebElement lblFirstOption;
 
+  @FindBy(xpath = "//*[@id=\"predicted-search-results\"]/li[2]")
+  private WebElement lblFirstOptionPwa;
+
   @FindBy(xpath = "//*[@id=\"top-search\"]/div[2]/button")
   private WebElement lblLetsGo;
+
+  @FindBy(id = "search-button")
+  private WebElement lblLetsGoPwa;
 
   public LandingPage (WebDriver driver) {
     PageFactory.initElements(driver, this);
@@ -29,7 +35,7 @@ public class LandingPage {
 
   public LandingPage enterCityName() {
     if(driver.getCurrentUrl().equals("https://www.hostelworld.com/pwa/")) {
-      lblSearchBoxPWA.sendKeys(TestDataConstants.TESTCITY);
+      lblSearchBoxPwa.sendKeys(TestDataConstants.TESTCITY);
     } else {
       lblSearchBox.sendKeys(TestDataConstants.TESTCITY);
     }
@@ -37,11 +43,19 @@ public class LandingPage {
   }
 
   public LandingPage selectCity() {
-    lblFirstOption.click();
+    if (driver.getCurrentUrl().equals("https://www.hostelworld.com/pwa/")) {
+      lblFirstOptionPwa.click();
+    } else {
+      lblFirstOption.click();
+    }
     return this;
   }
 
   public void letsGo() {
-    lblLetsGo.click();
+    if (driver.getCurrentUrl().equals("https://www.hostelworld.com/pwa/")) {
+      lblSearchBoxPwa.click();
+    } else {
+      lblSearchBox.click();
+    }
   }
 }

@@ -17,7 +17,6 @@ public class ValidateFile {
   File newFile = null;
   String lineX = "";
   String testResult = null;
-  String errorMessage = "";
   ArrayList<String> errorMessages = new ArrayList<String>();
   ArrayList<String> errorMessagesActual = new ArrayList<String>();
 
@@ -70,8 +69,6 @@ public class ValidateFile {
     FileHandler fh;
 
     try {
-
-      // This block configure the logger with handler and formatter
       fh = new FileHandler("src/main/resources/results.log");
       logger.addHandler(fh);
       SimpleFormatter formatter = new SimpleFormatter();
